@@ -1,14 +1,20 @@
 const express = require('express'),
-path = require('path'),
-bodyParser = require('body-parser'),
+os = require('os'),
+formData = require('express-form-data'),
 cors = require('cors');
 
 const submitData = require('./routes/submitData');
 
+const options = {
+    uploadDir: os.tmpdir(),
+    autoClean: true
+}
+
 const app = express();
-app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(bodyParser.raw());
+app.use(formData.parse(options));
+app.use(formData.format());
+app.use(formData.stream());
+app.use(formData.union());
 app.use(cors());
 
 app.use('/submit', submitData);
