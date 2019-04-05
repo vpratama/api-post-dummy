@@ -11,4 +11,4 @@ node server.js
 nodemon server.js
 
 # endpoint
-localhost:4003/submit/form
+http://localhost:4003/submit/form
